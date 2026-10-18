@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Retention Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">👥</span>
+            <div>
+                <h2>ChurnWise</h2>
+                <p>Customer Intelligence</p>
+            </div>
+        </div>
+
+        <nav class="navigation">
+            <button class="nav-link active" data-section="home">⌂ Home</button>
+            <button class="nav-link" data-section="prediction">✦ Churn Prediction</button>
+            <button class="nav-link" data-section="risk">◉ Customer Risk</button>
+            <button class="nav-link" data-section="retention">♡ Retention Tips</button>
+            <button class="nav-link" data-section="learn">▤ Know About Churn</button>
+            <button class="nav-link" data-section="model">⚙ About the Model</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>●</span> Machine Learning Project
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">CUSTOMER ANALYTICS</p>
+                <h1 id="page-title">Welcome to ChurnWise</h1>
+            </div>
+            <span class="status-label">ML Powered</span>
+        </header>
+
+        <!-- HOME -->
+        <section id="home" class="content-section active">
+            <div class="hero">
+                <p class="eyebrow">CUSTOMER RETENTION INTELLIGENCE</p>
+                <h2>Understand your customers.<br>Retain the right relationships.</h2>
+                <p>
+                    Predict potential customer churn, understand risk,
+                    and explore practical retention strategies using
+                    machine learning.
+                </p>
+                <button class="primary-button" data-go="prediction">
+                    Start a Prediction →
+                </button>
+            </div>
+
+            <div class="stats-grid">
+                <article class="info-card">
+                    <span class="card-icon">✦</span>
+                    <h3>Churn Prediction</h3>
+                    <p>Estimate whether a customer may leave.</p>
+                </article>
+
+                <article class="info-card">
+                    <span class="card-icon">◉</span>
+                    <h3>Risk Assessment</h3>
+                    <p>Review the latest predicted risk level.</p>
+                </article>
+
+                <article class="info-card">
+                    <span class="card-icon">♡</span>
+                    <h3>Retention Guidance</h3>
+                    <p>Explore actions to improve customer loyalty.</p>
+                </article>
+            </div>
+
+            <div class="panel">
+                <h3>How it works</h3>
+                <div class="steps">
+                    <p><strong>01</strong> Enter customer information</p>
+                    <p><strong>02</strong> Generate a model prediction</p>
+                    <p><strong>03</strong> Review the result and guidance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PREDICTION -->
+        <section id="prediction" class="content-section">
+            <div class="panel">
+                <div class="section-heading">
+                    <div>
+                        <h2>Customer Churn Prediction</h2>
+                        <p>Enter six customer details to estimate churn risk.</p>
+                    </div>
+                </div>
+
+                <form id="churn-form">
+
+                    <div class="form-grid">
+
+                        <!-- 1. TENURE -->
+                        <div class="form-group">
+                            <label for="tenure">Customer Tenure (months)</label>
+                            <input
+                                type="number"
+                                id="tenure"
+                                min="0"
+                                max="72"
+                                step="1"
+                                placeholder="e.g. 12"
+                                required
+                            >
+                            <small>How long the customer has stayed.</small>
+                        </div>
+
+                        <!-- 2. CONTRACT -->
+                        <div class="form-group">
+                            <label for="Contract">Contract Type</label>
+                            <select id="Contract" required>
+                                <option value="">Select contract</option>
+                                <option value="Month-to-month">Month-to-month</option>
+                                <option value="One year">One year</option>
+                                <option value="Two year">Two year</option>
+                            </select>
+                        </div>
+
+                        <!-- 3. MONTHLY CHARGES -->
+                        <div class="form-group">
+                            <label for="MonthlyCharges">Monthly Charges ($)</label>
+                            <input
+                                type="number"
+                                id="MonthlyCharges"
+                                min="0"
+                                step="0.01"
+                                placeholder="e.g. 70.50"
+                                required
+                            >
+                        </div>
+
+                        <!-- 4. INTERNET SERVICE -->
+                        <div class="form-group">
+                            <label for="InternetService">Internet Service</label>
+                            <select id="InternetService" required>
+                                <option value="">Select service</option>
+                                <option value="DSL">DSL</option>
+                                <option value="Fiber optic">Fiber optic</option>
+                                <option value="No">No internet service</option>
+                            </select>
+                        </div>
+
+                        <!-- 5. ONLINE SECURITY -->
+                        <div class="form-group">
+                            <label for="OnlineSecurity">Online Security</label>
+                            <select id="OnlineSecurity" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- 6. TECH SUPPORT -->
+                        <div class="form-group">
+                            <label for="TechSupport">Technical Support</label>
+                            <select id="TechSupport" required>
+                                <option value="">Select option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No internet service">
+                                    No internet service
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="notice">
+                        <strong>Privacy of inputs:</strong>
+                        Only these six selected features are submitted
+                        for the model prediction.
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="primary-button full-button"
+                        id="predict-button"
+                    >
+                        Predict Churn
+                    </button>
+
+                    <button type="reset" class="secondary-button">
+                        Reset Form
+                    </button>
+
+                </form>
+
+                <!-- PREDICTION RESULT -->
+                <div
+                    id="result-box"
+                    class="result-box"
+                    aria-live="polite"
+                    hidden
+                >
+                    <h3 id="result-status">Prediction Result</h3>
+                    <p id="result-description"></p>
+
+                    <div class="probability-row">
+                        <span>Estimated churn probability</span>
+                        <strong id="probability-value">—</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="progress-bar" class="progress-bar"></div>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        data-go="risk"
+                    >
+                        View Customer Risk →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CUSTOMER RISK -->
+        <section id="risk" class="content-section">
+            <div class="panel">
+                <h2>Customer Risk Assessment</h2>
+                <p>
+                    Review the latest customer prediction generated by the model.
+                </p>
+
+                <div class="risk-card">
+                    <span class="card-icon">◉</span>
+                    <h3 id="risk-level">No prediction available</h3>
+                    <p id="risk-summary">
+                        Run a churn prediction to see the customer's estimated risk.
+                    </p>
+                </div>
+
+                <h3>Estimated Churn Probability</h3>
+
+                <div class="probability-row">
+                    <span>Latest prediction</span>
+                    <strong id="risk-probability">—</strong>
+                </div>
+
+                <div class="progress-track">
+                    <div id="risk-progress" class="progress-bar"></div>
+                </div>
+
+                <p class="muted-text">
+                    Risk bands are indicative labels based on model probability,
+                    not guarantees of future customer behavior.
+                </p>
+
+                <button class="primary-button" data-go="prediction">
+                    Analyze Another Customer
+                </button>
+            </div>
+        </section>
+
+        <!-- RETENTION TIPS -->
+        <section id="retention" class="content-section">
+            <div class="panel">
+                <h2>Retention Tips</h2>
+                <p>
+                    Explore practical approaches to improving customer retention.
+                </p>
+
+                <div id="retention-summary" class="notice">
+                    Run a prediction to receive guidance based on the latest result.
+                </div>
+
+                <div class="tips-grid">
+                    <article class="info-card">
+                        <span class="card-icon">🤝</span>
+                        <h3>Strengthen Relationships</h3>
+                        <p>Contact customers to understand their concerns and experience.</p>
+                    </article>
+
+                    <article class="info-card">
+                        <span class="card-icon">💳</span>
+                        <h3>Review Pricing</h3>
+                        <p>Explain suitable plans and clarify recurring charges.</p>
+                    </article>
+
+                    <article class="info-card">
+                        <span class="card-icon">🛠️</span>
+                        <h3>Improve Support</h3>
+                        <p>Resolve service issues and make support easy to access.</p>
+                    </article>
+
+                    <article class="info-card">
+                        <span class="card-icon">⭐</span>
+                        <h3>Reward Loyalty</h3>
+                        <p>Consider relevant loyalty benefits and long-term options.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARN ABOUT CHURN -->
+        <section id="learn" class="content-section">
+            <div class="panel">
+                <h2>Know About Customer Churn</h2>
+                <p>
+                    Customer churn occurs when a customer stops using a company's
+                    service or ends their subscription.
+                </p>
+
+                <div class="stats-grid">
+                    <article class="info-card">
+                        <h3>Why customers leave</h3>
+                        <p>Pricing, poor service, unmet expectations, or better alternatives.</p>
+                    </article>
+
+                    <article class="info-card">
+                        <h3>Why predict churn?</h3>
+                        <p>To identify potential risks early and prioritize customer support.</p>
+                    </article>
+
+                    <article class="info-card">
+                        <h3>Business impact</h3>
+                        <p>High churn can reduce recurring revenue and increase acquisition costs.</p>
+                    </article>
+                </div>
+
+                <div class="notice">
+                    A prediction is a decision-support signal. Businesses should
+                    validate it with customer feedback and real-world context.
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT THE MODEL -->
+        <section id="model" class="content-section">
+            <div class="panel">
+                <h2>About the Machine Learning Model</h2>
+
+                <p>
+                    ChurnWise uses a Logistic Regression pipeline with
+                    preprocessing for numerical and categorical customer data.
+                    The reduced model uses six selected input features.
+                </p>
+
+                <div class="model-steps">
+                    <article class="info-card">
+                        <h3>01 · Data Preparation</h3>
+                        <p>
+                            Handle missing values, scale numerical features,
+                            and encode categorical features within the pipeline.
+                        </p>
+                    </article>
+
+                    <article class="info-card">
+                        <h3>02 · Train and Evaluate</h3>
+                        <p>
+                            Compare models using accuracy, precision, recall,
+                            F1-score, and ROC-AUC.
+                        </p>
+                    </article>
+
+                    <article class="info-card">
+                        <h3>03 · Generate Prediction</h3>
+                        <p>
+                            Submit six customer features to the trained pipeline
+                            and return the predicted class and churn probability.
+                        </p>
+                    </article>
+                </div>
+
+                <div class="notice">
+                    The six-feature model achieved 82.64% accuracy,
+                    93.41% recall, and a 80.67% F1-score on the test
+                    comparison previously performed. Results may vary on
+                    new customer data.
+                </div>
+            </div>
+        </section>
+
+        <footer class="app-footer">
+            ChurnWise · Customer Churn Prediction & Retention Project
+            <p>Machine-learning predictions are estimates, not guarantees.</p>
+        </footer>
+
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
